@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10243a">
+  <meta name="description" content="FixMyStreet is a civic issue reporting platform enabling citizens to report local infrastructure, sanitation, and safety problems and track resolutions.">
+  <title>FixMyStreet — Civic Issue Reporter</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏙️</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="FixMyStreet home">
+      <span class="brand-mark">F<span>+</span></span>
+      <span>FixMyStreet<small>CIVIC ISSUE REPORTER</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    <nav id="mainNav">
+      <a href="#report">Report Issue</a>
+      <a href="#track">Track Status</a>
+      <a href="#explore">Community Feed</a>
+      <a href="#helplines">Helplines</a>
+      <a href="#how">How It Works</a>
+      <a href="#admin" class="nav-admin" id="openAdminNav">Staff Portal</a>
+    </nav>
+    <a class="nav-cta" href="#report">＋ Report Problem</a>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> CITIZEN ACTION PORTAL</div>
+        <h1>Spot an issue.<br><em>Track the fix.</em></h1>
+        <p>
+          Encountered a pothole, uncollected garbage, broken streetlight, or civic hazard?
+          Submit a report in under two minutes, receive a tracking reference, and monitor municipal progress in real-time.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-orange" href="#report">Report a Problem <span>↗</span></a>
+          <a class="btn btn-secondary" href="#track">Track by Reference ID <span>⌖</span></a>
+        </div>
+        <div class="hero-proof">
+          <div class="avatar-stack">
+            <span>✓</span>
+            <span>🏙</span>
+            <span>♻</span>
+          </div>
+          <span>
+            <b>Open Civic Collaboration</b>
+            <small>Empowering residents and municipal teams together</small>
+          </span>
+        </div>
+      </div>
+
+      <!-- Hero Visual Art -->
+      <div class="hero-art" aria-label="Illustration of a clean and connected neighbourhood">
+        <div class="sun"></div>
+        <div class="cloud cloud-a"></div>
+        <div class="cloud cloud-b"></div>
+        <div class="city city-back"><i></i><i></i><i></i><i></i></div>
+        <div class="city city-front"><i></i><i></i><i></i></div>
+        <div class="road"><span class="road-line"></span></div>
+        <div class="tree tree-one"><b></b><i></i></div>
+        <div class="tree tree-two"><b></b><i></i></div>
+        <div class="pin pin-one">⚠<small>Pothole Logged</small></div>
+        <div class="pin pin-two">✓<small>Streetlight Fixed</small></div>
+        <div class="art-caption">
+          <span class="caption-icon">✦</span>
+          <span>
+            <b>Civic Accountability in Action</b>
+            <small>Transparent tracking from report to resolution</small>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real-time Stats Strip -->
+    <section class="stats-strip" aria-label="Platform resolution statistics">
+      <div>
+        <span class="stat-icon">📋</span>
+        <span>
+          <b id="statTotal">—</b>
+          <small>Total Reports Filed</small>
+        </span>
+      </div>
+      <div>
+        <span class="stat-icon">⏳</span>
+        <span>
+          <b id="statUnderReview">—</b>
+          <small>Under Municipal Review</small>
+        </span>
+      </div>
+      <div>
+        <span class="stat-icon">🛠</span>
+        <span>
+          <b id="statInProgress">—</b>
+          <small>Works in Progress</small>
+        </span>
+      </div>
+      <div>
+        <span class="stat-icon">✅</span>
+        <span>
+          <b id="statResolved">—</b>
+          <small>Issues Resolved</small>
+        </span>
+      </div>
+    </section>
+
+    <!-- Issue Categories -->
+    <section class="section" id="categories">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">BROWSE CIVIC DOMAINS</span>
+          <h2>What needs attention<br><em>in your street?</em></h2>
+        </div>
+        <p>Select a category below to jump straight to the submission form with the category pre-selected.</p>
+      </div>
+
+      <div class="category-grid">
+        <button class="category-card coral" data-category="Roads & footpaths">
+          <span class="cat-icon">🛣</span>
+          <b>Roads & footpaths</b>
+          <small>Potholes, broken footpaths, damaged curbs, manhole covers</small>
+          <span class="card-arrow">↗</span>
+        </button>
+        <button class="category-card mint" data-category="Garbage & sanitation">
+          <span class="cat-icon">♻</span>
+          <b>Garbage & sanitation</b>
+          <small>Overflowing dumpsters, open waste dumps, clogged gutters</small>
+          <span class="card-arrow">↗</span>
+        </button>
+        <button class="category-card lavender" data-category="Water & utilities">
+          <span class="cat-icon">💡</span>
+          <b>Water & utilities</b>
+          <small>Broken streetlights, water pipeline leaks, power line faults</small>
+          <span class="card-arrow">↗</span>
+        </button>
+        <button class="category-card yellow" data-category="Municipal services">
+          <span class="cat-icon">🏛</span>
+          <b>Municipal services</b>
+          <small>Public park maintenance, drainage overflow, civic delays</small>
+          <span class="card-arrow">↗</span>
+        </button>
+        <button class="category-card blue" data-category="Public safety">
+          <span class="cat-icon">🛡</span>
+          <b>Public safety</b>
+          <small>Fallen branches, missing railings, structural hazards, dark spots</small>
+          <span class="card-arrow">↗</span>
+        </button>
+        <button class="category-card pink" data-category="Harassment or sexual offence">
+          <span class="cat-icon">🔒</span>
+          <b>Harassment / Offences</b>
+          <small>Confidential, non-public safety reports (Emergency: Call 112)</small>
+          <span class="card-arrow">↗</span>
+        </button>
+        <button class="category-card peach" data-category="Pollution & noise">
+          <span class="cat-icon">📢</span>
+          <b>Pollution & noise</b>
+          <small>Industrial smoke, illegal dumping, excessive decibel noise</small>
+          <span class="card-arrow">↗</span>
+        </button>
+        <button class="category-card grey" data-category="Other civic complaint">
+          <span class="cat-icon">➕</span>
+          <b>Other civic complaint</b>
+          <small>Any other community grievance affecting neighbourhood wellbeing</small>
+          <span class="card-arrow">↗</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Report Submission Section -->
+    <section class="report-section" id="report">
+      <div class="report-intro">
+        <span class="eyebrow">CITIZEN GRIEVANCE INTAKE</span>
+        <h2>Let’s get the issue<br><em>officially logged.</em></h2>
+        <p>
+          Providing clear location descriptions and landmarks enables municipal field crews to inspect and resolve problems quickly.
+        </p>
+
+        <div class="privacy-note">
+          <span>🔒</span>
+          <div>
+            <b>Privacy & Safety Safeguard</b>
+            <small>
+              Harassment and sensitive safety issues are strictly private and never published to the community feed. For immediate emergency danger, dial 112 immediately.
+            </small>
+          </div>
+        </div>
+
+        <div class="mini-checks">
+          <span>✓ Instant reference tracking code generated</span>
+          <span>✓ No login or password required for citizens</span>
+          <span>✓ Transparent updates from municipal staff</span>
+        </div>
+      </div>
+
+      <form id="reportForm" class="report-form" novalidate>
+        <div class="form-top">
+          <span class="form-step">STEP 01 / NEW CIVIC REPORT</span>
+          <span class="required-note">* Required fields</span>
+        </div>
+        <h3>Describe the Problem</h3>
+
+        <div class="field">
+          <label for="category">Issue Category *</label>
+          <select id="category" name="category" required>
+            <option value="">Select an issue category</option>
+            <option>Roads & footpaths</option>
+            <option>Garbage & sanitation</option>
+            <option>Water & utilities</option>
+            <option>Municipal services</option>
+            <option>Public safety</option>
+            <option>Harassment or sexual offence</option>
+            <option>Pollution & noise</option>
+            <option>Other civic complaint</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="title">Issue Title * <small>(4–120 characters)</small></label>
+          <input id="title" name="title" maxlength="120" minlength="4" required placeholder="e.g. Broken pavement slabs near Metro Gate 2">
+        </div>
+
+        <div class="field">
+          <label for="description">Detailed Description * <small>(10–3000 characters)</small></label>
+          <textarea id="description" name="description" rows="4" minlength="10" maxlength="3000" required placeholder="Describe the severity, duration, and safety risk to residents or motorists..."></textarea>
+          <small class="field-help">Do not include private identity allegations or sensitive personal numbers in public reports.</small>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="area">Locality / Area / Ward *</label>
+            <input id="area" name="area" maxlength="160" required placeholder="e.g. Indiranagar, Ward 112, Bengaluru">
+          </div>
+          <div class="field">
+            <label for="priority">Urgency Level</label>
+            <select id="priority" name="priority">
+              <option value="Normal">Normal — Standard grievance</option>
+              <option value="High">High — Disruption to commute</option>
+              <option value="Urgent">Urgent — Immediate hazard</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="address">Specific Landmark or Street Address</label>
+          <input id="address" name="address" maxlength="250" placeholder="e.g. Opposite State Bank branch, near electric pole #14">
+        </div>
+
+        <div class="field">
+          <label for="photo">Photo Evidence (Optional, max 3 MB)</label>
+          <input id="photo" name="photo" type="file" accept="image/png, image/jpeg, image/webp">
+          <small class="field-help">Attach a photo of the pothole, garbage, or civic hazard to help field workers locate and assess it.</small>
+          <div id="photoPreviewWrap" class="photo-preview-wrap hidden">
+            <img id="photoPreview" alt="Photo preview">
+            <button type="button" class="btn btn-outline btn-xs" id="removePhotoBtn">✕ Remove Photo</button>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="contact">Phone Number (Optional)</label>
+            <input id="contact" name="contact" type="tel" maxlength="20" placeholder="e.g. +91 98765 43210 (For follow-up)">
+          </div>
+          <div class="field">
+            <label for="reporter">Your Name (Optional)</label>
+            <input id="reporter" name="reporter" maxlength="100" placeholder="e.g. Concerned Citizen">
+          </div>
+        </div>
+
+        <label class="check-row">
+          <input id="confirm" type="checkbox" required>
+          <span>
+            I declare that this civic report is filed in good faith. I understand that emergency medical or criminal incidents must be directly communicated to emergency dispatchers (112).
+          </span>
+        </label>
+
+        <button class="btn btn-dark submit-btn" type="submit" id="submitReportBtn">
+          Submit Civic Report <span>↗</span>
+        </button>
+
+        <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- Track Report Status Section -->
+    <section class="section track-section" id="track">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">CITIZEN STATUS LOOKUP</span>
+          <h2>Track Your Report<br><em>Resolution Progress</em></h2>
+        </div>
+        <p>Enter the 12-character Reference ID provided during submission to verify the live administrative status.</p>
+      </div>
+
+      <div class="track-card">
+        <form id="trackForm" class="track-search-box">
+          <input
+            id="trackInput"
+            type="text"
+            maxlength="16"
+            placeholder="Enter reference ID (e.g. FSM-A1B2C3D4)"
+            aria-label="Enter reference ID"
+            required
+          >
+          <button class="btn btn-orange" type="submit">Track Status <span>⌖</span></button>
+        </form>
+
+        <div id="trackResult" class="track-result-wrapper hidden">
+          <!-- Filled dynamically by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Public Community Feed Section -->
+    <section class="section community" id="explore">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">COMMUNITY DASHBOARD</span>
+          <h2>Neighbourhood Grievances<br><em>Open for Public View</em></h2>
+        </div>
+        <p>Filter or search civic reports across localities. Confidential safety reports are safeguarded from public view.</p>
+      </div>
+
+      <div class="feed-tools">
+        <input id="searchReports" type="search" placeholder="Search by title, description, or locality…" aria-label="Search reports">
+        <select id="filterCategory" aria-label="Filter by category">
+          <option value="">All Categories</option>
+          <option>Roads & footpaths</option>
+          <option>Garbage & sanitation</option>
+          <option>Water & utilities</option>
+          <option>Municipal services</option>
+          <option>Public safety</option>
+          <option>Pollution & noise</option>
+          <option>Other civic complaint</option>
+        </select>
+        <select id="filterStatus" aria-label="Filter by status">
+          <option value="">All Statuses</option>
+          <option>Submitted</option>
+          <option>Under review</option>
+          <option>In progress</option>
+          <option>Resolved</option>
+          <option>Rejected</option>
+        </select>
+        <button class="btn btn-outline" id="refreshReports">↻ Refresh</button>
+      </div>
+
+      <div id="reportsList" class="reports-grid">
+        <div class="loading-state">Loading community civic reports…</div>
+      </div>
+
+      <p class="section-footnote">
+        FixMyStreet is an open civic technology initiative. For official legal complaints or statutory municipal tenders, please refer to your state municipal portal.
+      </p>
+    </section>
+
+    <!-- Helplines Directory -->
+    <section class="helpline-section" id="helplines">
+      <div class="helpline-heading">
+        <span class="eyebrow light">CRITICAL CITIZEN HELPLINES</span>
+        <h2>Emergency and<br><em>Support Contacts</em></h2>
+        <p>In life-threatening situations, medical emergencies, or urgent crimes, contact emergency services immediately.</p>
+        <a class="btn btn-orange" href="https://112.gov.in/" target="_blank" rel="noopener">National Emergency Portal (112) ↗</a>
+      </div>
+
+      <div class="helpline-list" id="helplineList">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+      <p class="helpline-disclaimer">
+        Helpline numbers are governed by central and state government agencies. In case of telecommunication issues, contact your local police station or hospital.
+      </p>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section steps" id="how">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">SIMPLE 3-STEP WORKFLOW</span>
+          <h2>From Street Hazard<br><em>to Verified Resolution</em></h2>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div>
+          <span class="step-number">01</span>
+          <h3>Spot & Document</h3>
+          <p>Notice a hazard in your ward? Choose a category, describe the issue, and pinpoint the street location.</p>
+        </div>
+        <div>
+          <span class="step-number">02</span>
+          <h3>Log & Reference</h3>
+          <p>Receive a cryptographic reference code. The report is entered into the municipal queue with appropriate urgency.</p>
+        </div>
+        <div>
+          <span class="step-number">03</span>
+          <h3>Review & Rectify</h3>
+          <p>Municipal ward staff review details, dispatch field maintenance, and post resolution updates to the tracker.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Municipal Staff / Admin Portal Section -->
+    <section class="section admin-section" id="admin">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">MUNICIPAL DESK</span>
+          <h2>Staff Portal &<br><em>Grievance Management</em></h2>
+        </div>
+        <p>Authorized ward officers can verify submitted reports, update issue milestones, add official remarks, and filter records.</p>
+      </div>
+
+      <div id="adminAuthBox" class="admin-auth-box">
+        <div class="admin-auth-card">
+          <span class="admin-auth-icon">🛡</span>
+          <h3>Municipal Staff Authentication</h3>
+          <p>Please enter the administrative key to access the case management dashboard.</p>
+          <div class="field">
+            <label for="adminKeyInput">Admin API Key</label>
+            <input type="password" id="adminKeyInput" placeholder="Enter configured ADMIN_API_KEY">
+            <small class="field-help">Demo key configured in .env: <code>VICTORIASECRETSUPERMODELADRIANALIMA</code></small>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;">
+            <button class="btn btn-dark" id="adminLoginBtn">Authenticate & Load Portal <span>→</span></button>
+            <button type="button" class="btn btn-outline" id="adminFillKeyBtn">Fill Demo Key</button>
+          </div>
+          <p id="adminAuthMessage" class="form-message"></p>
+        </div>
+      </div>
+
+      <div id="adminDashboard" class="admin-dashboard hidden">
+        <div class="admin-header-bar">
+          <div>
+            <b>Staff Session Active</b>
+            <small id="adminReportCount">Loading records...</small>
+          </div>
+          <div class="admin-header-actions">
+            <button class="btn btn-outline" id="adminRefreshBtn">↻ Refresh Desk</button>
+            <button class="btn btn-secondary" id="adminLogoutBtn">Sign Out</button>
+          </div>
+        </div>
+
+        <div class="feed-tools admin-tools">
+          <input id="adminSearchInput" type="search" placeholder="Filter by title, reference ID, or locality…">
+          <select id="adminStatusFilter">
+            <option value="">All Statuses</option>
+            <option>Submitted</option>
+            <option>Under review</option>
+            <option>In progress</option>
+            <option>Resolved</option>
+            <option>Rejected</option>
+          </select>
+        </div>
+
+        <div id="adminReportsList" class="admin-reports-table-wrap">
+          <!-- Filled dynamically by JavaScript -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <a class="brand footer-brand" href="#home">
+      <span class="brand-mark">F<span>+</span></span>
+      <span>FixMyStreet<small>CIVIC ISSUE REPORTER</small></span>
+    </a>
+    <p>Empowering cleaner, safer, and responsive urban communities.</p>
+    <span>© <span id="year"></span> FixMyStreet · Full-Stack Academic Project</span>
+  </footer>
+
+  <!-- Submission Success Modal -->
+  <div id="resultModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModal" aria-label="Close modal">×</button>
+      <div class="success-mark">✓</div>
+      <h2 id="modalTitle">Report Successfully Lodged</h2>
+      <p id="modalText">Your civic grievance has been registered on the municipal tracking queue.</p>
+
+      <div class="reference-box">
+        <small>OFFICIAL TRACKING REFERENCE ID</small>
+        <strong id="referenceId">FSM-XXXXXXXX</strong>
+        <button id="copyReference" class="btn btn-outline">Copy Reference ID</button>
+      </div>
+
+      <p class="modal-hint">
+        Keep this reference safe. You can check real-time progress anytime via the Track Status tab.
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn btn-orange" id="trackNowBtn">Track This Issue Now</button>
+        <button class="btn btn-dark" id="doneModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
